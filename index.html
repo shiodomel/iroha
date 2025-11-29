@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chitoge Mobile</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon_io/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io/apple-touch-icon.png">
+    <link rel="manifest" href="img/favicon_io/manifest.json">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: black;
+        }
+
+        /* -------------------------------
+           手机专用页面宽度（你的选项②核心）
+        -------------------------------- */
+        .wrapper {
+            width: 375px;
+            max-width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 5;
+            padding-bottom: 40px;
+        }
+
+        /* 背景保持全屏自动覆盖（不受 wrapper 限制） */
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            transition: opacity 3s ease-in-out;
+            animation: bgmove 100s linear infinite alternate;
+            z-index: -2;
+        }
+
+        #bg2 { z-index: -1; opacity: 0; }
+
+        @keyframes bgmove {
+            0% { background-position: center top; }
+            100% { background-position: center bottom; }
+        }
+
+        /* --------------------------
+           标题
+        --------------------------- */
+        .title {
+            text-align: center;
+            font-size: 2.4rem;
+            color: #1F1F1F;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* --------------------------
+           标签（自动换行）
+        --------------------------- */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            padding: 0 10px;
+        }
+
+        .tags i {
+            font-size: 15px;
+        }
+
+        /* --------------------------
+           音乐播放器
+        --------------------------- */
+        audio {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        /* --------------------------
+           滚动弹幕（保持原本动画）
+        --------------------------- */
+        .roman { 
+            font-family: 'Times New Roman', Times, serif; 
+            font-style: italic;
+            font-size: 1.8rem;
+            white-space: nowrap;
+        }
+
+        .scroll1, .scroll2 {
+            position: relative;
+            animation-fill-mode: both;
+            will-change: transform;
+        }
+        .scroll1 { animation: moveRight 20s linear infinite; }
+        .scroll2 { animation: moveLeft 25s linear infinite; }
+
+        @keyframes moveRight {
+            0% { transform: translateX(120%); }
+            100% { transform: translateX(-120%); }
+        }
+
+        @keyframes moveLeft {
+            0% { transform: translateX(-120%); }
+            100% { transform: translateX(120%); }
+        }
+
+        /* --------------------------
+           文字呼吸效果
+        --------------------------- */
+        .bio-breathing {
+            font-family: '楷体', 'KaiTi', serif;
+            font-weight: bold;
+            animation: breathing 10s ease-in-out infinite;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        @keyframes breathing {
+            0% { color:#1F1F1F; text-shadow:0 0 3px rgba(31,31,31,0.5); }
+            25% { color:#7D99B8; text-shadow:0 0 10px rgba(125,153,184,0.7); }
+            50% { color:#8B7D99; text-shadow:0 0 12px rgba(139,125,153,0.7); }
+            75% { color:#7D99B8; text-shadow:0 0 10px rgba(125,153,184,0.7); }
+            100% { color:#1F1F1F; text-shadow:0 0 3px rgba(31,31,31,0.5); }
+        }
+
+        /* --------------------------
+           图片自适应手机宽度
+        --------------------------- */
+        img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        /* 外链 */
+        .link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 背景层（依然全屏） -->
+    <div id="bg1" class="bg"></div>
+    <div id="bg2" class="bg"></div>
+
+    <div class="wrapper">
+        <h1 class="title">Chitoge's Web</h1>
+
+        <div class="tags">
+            <i style="color:#4A90E2">#潮留美海</i>
+            <i style="color:#F7C8D2">#西园寺舞</i>
+            <i style="color:#F3A6C0">#沈余音</i>
+            <i style="color:#9B81B8">#神崎葵</i>
+            <i style="color:#FFF8E7">#小米粥</i>
+            <i style="color:#E6BE8A">#格鱼</i>
+        </div>
+
+        <audio id="bg-music" controls autoplay loop></audio>
+
+        <!-- 滚动弹幕 -->
+        <h1 class="roman scroll1">Shiodome Miuna</h1>
+        <h1 class="roman scroll2">Saionji Mai</h1>
+        <h1 class="roman scroll1">Kanzaki Kui</h1>
+
+        <p class="bio-breathing" style="font-size:22px;">“缄默。”</p>
+        <p class="bio-breathing" style="font-size:22px;">“安康。”</p>
+        <p class="bio-breathing" style="font-size:26px;">“成为自己想成为的人。”</p>
+        <p class="bio-breathing" style="font-size:26px;">“但是相思莫相负，牡丹亭上三生路。”</p>
+
+        <img src="img/柊筱娅.jpg" loading="lazy">
+        <img src="img/宫本琉璃.jpg" loading="lazy">
+        <img src="img/四宫辉夜.jpg" loading="lazy">
+
+        <div class="link">
+            <a href="https://space.bilibili.com/2958241">B站UP：札格纳特</a>
+        </div>
+    </div>
+
+    <script>
+        /* 随机延迟弹幕初始化 */
+        const scrollitems = document.querySelectorAll('.scroll1, .scroll2');
+        scrollitems.forEach(item => {
+            const delay = Math.random() * 3;
+            item.style.animationDelay = delay + 's';
+        });
+
+        /* 背景切换 */
+        const images = ["img/0.jpg", "img/1.jpg", "img/2.jpg", "img/3.jpg"];
+        let index = 0;
+        const bg1 = document.getElementById("bg1");
+        const bg2 = document.getElementById("bg2");
+
+        images.forEach(src => { let img = new Image(); img.src = src; });
+        bg1.style.backgroundImage = `url(${images[0]})`;
+
+        function nextBackground() {
+            index = (index + 1) % images.length;
+            bg2.style.backgroundImage = `url(${images[index]})`;
+            bg2.style.opacity = 1;
+
+            setTimeout(() => {
+                bg1.style.backgroundImage = bg2.style.backgroundImage;
+                bg2.style.opacity = 0;
+            }, 3000);
+        }
+
+        setInterval(nextBackground, 8000);
+
+        /* 音乐播放 */
+        const files = ["music/拜德钟楼广场.mp3", "music/表裏な想い.mp3"];
+        let cur = 0;
+        const audio = document.getElementById("bg-music");
+
+        audio.src = files[cur];
+        audio.play().catch(()=>{});
+
+        audio.addEventListener("ended", () => {
+            cur = (cur + 1) % files.length;
+            audio.src = files[cur];
+            audio.play().catch(()=>{});
+        });
+    </script>
+
+</body>
+</html>
